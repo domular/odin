@@ -1,6 +1,4 @@
 def cypher(string, shift_factor)
-	return puts "Shift value should be between 1 and 25" unless valid_shift_factor?(shift_factor)
-	
 	a=[]
 	string.each_byte do |char_ascii|
 		# Shift alphabet characters, add the others without modification. 
@@ -18,7 +16,7 @@ def cypher(string, shift_factor)
 end
 
 def shift(ascii, shift_factor)
-	# Set the ascii value that requires a character to go from the end to the beginning of the alphabet.
+	# Define the first ascii value that requires a character to go from the end to the beginning of the alphabet.
 	edge_ascii_value = ascii < 91 ? 90-shift_factor : 122-shift_factor 
 	# This is the amount we subract from the ascii value if we have to go from z to a.
 	edge_shift_value = 26-shift_factor
@@ -35,6 +33,20 @@ def valid_shift_factor?(shift_factor)
 	return true if shift_factor.between?(1,26)
 end
 
+def get_things
+	STDERR.puts 'Enter string to encode: '
+	string = gets.chomp
 
+	shift=0
+	valid_shift=false
+	until valid_shift
+		STDERR.puts 'Enter the shift factor: '
+		shift = gets.chomp.to_i
 
-cypher('asdf fdXsa!',25)
+		valid_shift = true if shift.between?(1,26) 
+		STDERR.puts "Shift value should be between 1 and 25" unless valid_shift
+	end
+	cypher(string,shift)
+end
+
+get_things
