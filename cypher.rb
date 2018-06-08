@@ -29,10 +29,6 @@ def shift(ascii, shift_factor)
 	end
 end
 
-def valid_shift_factor?(shift_factor)
-	return true if shift_factor.between?(1,26)
-end
-
 def get_things
 	STDERR.puts 'Enter string to encode: '
 	string = gets.chomp
